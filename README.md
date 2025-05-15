@@ -11,6 +11,6 @@ Here is a breakdown of each program and outline of this directory:
 
 
 
-- Program 1: Very basic program to calculate the cost of mowing a lawn, the surface of the Lawn is shown in the         implmentation notes. It calculate the entire cost. 
+- Program 1 https://github.com/Hzmou/CppPrograms/tree/main/program-01: Very basic program to calculate the cost of mowing a lawn, the surface of the Lawn is shown in the         implmentation notes. It calculate the entire cost. 
 
 
