@@ -18,7 +18,7 @@ using namespace std;
 // function prototypes.
 double mean(vector<int> v);                         // function to calculate grades mean.
 double stddev(vector<int> v, double mean);          // function to calculate standard deviation.
-char letter(int score, double mean, double stddev); // function to calculate letter grade.
+char letter(int score, double m, double s); // function to calculate letter grade.
 void top3(const vector<int> &v);                    // function to calculate top 3 grades for the final and midterm.
 
 double mean(vector<int> v)
@@ -50,38 +50,36 @@ double stddev(vector<int> v, double m)
         sumSqauredDiff += pow(value - m, 2);
     }
 
-    double stdDev = sqrt(sumSqauredDiff / v.size());
+    double stdDev = sqrt(sumSqauredDiff / v.size()-1);
     return stdDev;
 }
 
-char letter(int score, double mean, double stddev)
+char letter(int score, double m, double s)
 {
-
-    // char letterGrade;
-
-    if (score < mean - 1.5 * stddev)
+   
+     if (score < m - 1.5 * s)
     {
+
         return 'E';
     }
-    else if (score < mean - 0.5 * stddev)
+    else if (score < m - 0.5 * s)
     {
+
         return 'D';
     }
-    else if (score < mean + 0.5 * stddev)
+    else if (score < m + 0.5 * s)
     {
         return 'C';
     }
-    else if (score < mean + 1.5 * stddev)
+    else if (score < m + 1.5 * s)
     {
         return 'B';
     }
     else
     {
-
         return 'A';
     }
 }
-
 void top3(const vector<int> &v)
 {
 
