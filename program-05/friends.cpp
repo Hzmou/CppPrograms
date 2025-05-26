@@ -1,8 +1,8 @@
 
 /*
-   * This is a basic program in C++ that uses dynamic arrays. The user enters a specified number of friend names
-with the best friend stored in the first index of the array followed by "regular" friends in no order.
-*/
+ * This is a basic program in C++ that uses dynamic arrays. The user enters a specified number of friend names
+ * with the best friend stored in the first index of the array followed by "regular" friends in no order.
+ */
 
 #include <iostream>
 #include <string>
@@ -11,86 +11,95 @@ with the best friend stored in the first index of the array followed by "regular
 using namespace std;
 
 // function prototypes.
-
-void display(string *friends, int size);
-int search(string *friends, int size, string target);
-string *resize(const string *smaller, int &cap);
+void display(string *friends, int size);              // function to display the friends list.
+int search(string *friends, int size, string target); // search if the friend exits in the friends list.
+string *resize(const string *smaller, int &cap);      // double the array capacity if we have reached the cap size.
 
 int main()
 {
 
-   int numFriends;
+   int numFriends; // number of friends. This will be the capacity of our array.
    string bestFriend;
    cout << "How Many friends: ";
-   cin >>  numFriends;
-    
+   cin >> numFriends;
+
    int cap = numFriends;
    int size = numFriends;
    string *friends = new string[numFriends];
-   
+
    cout << "enter the name of your Best Friend: ";
    cin >> bestFriend;
 
    friends[0] = bestFriend;
 
-   // prompt for the rest of the friends. 
+   // prompt for the rest of the friends.
 
-   for(int i=1; i< numFriends ;++i){
-       cout << "Enter friend name: ";
-       cin >> friends[i];
+   for (int i = 1; i < numFriends; ++i)
+   {
+      cout << "Enter friend name: ";
+      cin >> friends[i];
    }
-   
-    display(friends,size);
 
+   display(friends, size);
 
-    string newBest;
-    cout << "\nEnter new best friend name (quit to end): ";
-    cin >> newBest;
-
+   string newBest;
   
-    while(newBest != "quit"){
-     
-    cout << "\nEnter new best friend name (quit to end): ";
-    cin >> newBest;
 
-    //check if it already a best friend. 
+   while (newBest != "quit")
+   {
 
-    if(friends[0] == newBest){
-      cout << newBest << " is already your best friend."<< endl;
-    }else{
+      cout << "\nEnter new best friend name (quit to end): ";
+      cin >> newBest;
 
-      int index = search(friends,size,newBest);
+      // check if it already a best friend.
 
-      if(index != -1){
-        // move to  the best friend position, from of the array. 
-        for(int i=index; i>0; --i){
-            friends[i] = friends[i-1];
-        }
-         friends[0] = newBest;
-      } else{
+      if (friends[0] == newBest)
+      {
+         cout << newBest << " is already your best friend." << endl;
+      }
+      else
+      {
 
-         if(size == cap){
-            friends = resize(friends,cap);
+         int index = search(friends, size, newBest);
 
-         }
-
-         for (int i = size; i > 0; --i)
+         if (index != -1)
          {
-                    friends[i] = friends[i - 1];
-                }
-                friends[0] = newBest;
-                ++size;
+            // move to  the best friend position, from of the array.
+            for (int i = index; i > 0; --i)
+            {
+               friends[i] = friends[i - 1];
+            }
+            friends[0] = newBest;
+         }
+         else
+         {
 
+            if (size == cap)
+            {
+               friends = resize(friends, cap);
+            }
+
+            for (int i = size; i > 0; --i)
+            {
+               friends[i] = friends[i - 1];
+            }
+            friends[0] = newBest;
+            ++size;
          }
       }
-       display(friends,size);
-    }
+
+       cout << "\nEnter new best friend name (quit to end): ";
+       cin >> newBest;
+      display(friends, size);
+   }
    delete[] friends;
    return 0;
 }
 
-
-
+/*
+ * This function doubles the size of the array if we have reached the cap size.
+ * Author: Hamza Zm.
+ */
 string *resize(const string *smaller, int &cap)
 {
 
@@ -115,6 +124,11 @@ string *resize(const string *smaller, int &cap)
    return larger;
 }
 
+/*
+ * This function is used to search for a friend in the friends array.
+ * Author: Hamza Zm.
+ */
+
 int search(string *friends, int size, string target)
 {
 
@@ -132,9 +146,13 @@ int search(string *friends, int size, string target)
    return -1;
 }
 
+/*
+ *  Function to display the list of friends and the Best friend tag.
+ *  Author: Hamza Zm.
+ */
 void display(string *friends, int size)
 {
-   cout << friends[0] << "   "<<"** Best Friend **"<< endl;
+   cout << friends[0] << "   " << "** Best Friend **" << endl;
 
    for (int i = 1; i < size; ++i)
    {
