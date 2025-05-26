@@ -16,24 +16,34 @@
 using namespace std;
 
 // function prototypes.
-double mean(vector<int> v);                         // function to calculate grades mean.
-double stddev(vector<int> v, double mean);          // function to calculate standard deviation.
+double mean(vector<int> v);                 // function to calculate grades mean.
+double stddev(vector<int> v, double mean);  // function to calculate standard deviation.
 char letter(int score, double m, double s); // function to calculate letter grade.
-void top3(const vector<int> &v);                    // function to calculate top 3 grades for the final and midterm.
+void top3(const vector<int> &v);            // function to calculate top 3 grades for the final and midterm.
 
+/*
+ * This function calculates the mean of a the vector of grades, and returns the mean as a double.
+ * Author : Hamza Zm.
+ */
 double mean(vector<int> v)
 {
-
-    if (v.empty())
+    double sum = 0.0;
+    double mean = 0.0;
+    for (int i = 0; i < v.size(); ++i)
     {
 
-        return 0.0;
+        sum += v[i];
     }
 
-    double sum = accumulate(v.begin(), v.end(), 0.0);
-    double mean = sum / v.size();
+    mean = sum / v.size();
     return mean;
 }
+
+/*
+ * This function calculates the standard deviation of a vector of grades.
+ * using the formula given in the assignment.
+ * Author : Hamza Zm.
+ */
 double stddev(vector<int> v, double m)
 {
     if (v.empty())
@@ -50,14 +60,19 @@ double stddev(vector<int> v, double m)
         sumSqauredDiff += pow(value - m, 2);
     }
 
-    double stdDev = sqrt(sumSqauredDiff / v.size()-1);
+    double stdDev = sqrt(sumSqauredDiff / v.size() - 1);
     return stdDev;
 }
 
+/*
+ * This function assigns letter grades based on the score, mean, and standard deviation.
+ * It uses the grading on the curve algorithm specified in our assignment instructions.
+ * Author : Hamza Zm.
+ */
 char letter(int score, double m, double s)
 {
-   
-     if (score < m - 1.5 * s)
+
+    if (score < m - 1.5 * s)
     {
 
         return 'E';
@@ -108,11 +123,6 @@ int main()
     vector<int> final;    // vector to store final grades.
     // Calculate means and standard deviations
 
-    double meanMid = mean(midterm);
-    double meanFin = mean(final);
-    double stddevMid = stddev(midterm, meanMid);
-    double stddevFin = stddev(final, meanFin);
-
     ifstream input;
     cout << "enter Input file name: ";
     string fileName;
@@ -136,18 +146,38 @@ int main()
     }
 
     input.close(); // Close the file after reading
+    // Calculate the mean and standard deviation for midterm and final grades.
+    double meanMid = mean(midterm);
+    double meanFin = mean(final);
+    double stddevMid = stddev(midterm, meanMid);
+    double stddevFin = stddev(final, meanFin);
 
     // Output the data as specified in our assignment instructions.
 
-    cout << "Code     Midterm   Grade    Final   Grade" << endl;
+    cout << "Code      Midterm Grade Final Grade" << endl;
     cout << "-----------------------------------" << endl;
 
     for (int i = 0; i < codes.size(); ++i)
     {
-        cout << left << setw(10) << codes[i] << " " << setw(7) << midterm[i] << " " << setw(5) << letter(midterm[i], meanMid, stddevMid)
-             << " " << setw(5) << final[i] << " " << setw(5) << letter(final[i], meanFin, stddevFin)
+        cout << left << std::setw(8) << codes[i]
+             << right << std::setw(7) << midterm[i]
+             << setw(6) << letter(midterm[i], meanMid, stddevMid)
+             << setw(7) << final[i]
+             << setw(6) << letter(final[i], meanFin, stddevFin)
              << endl;
     }
 
+    cout << endl;
+    cout << "Midterm mean: " << fixed << setprecision(1) << setw(30) << meanMid << endl;
+    cout << "Midterm std:  " << fixed << setprecision(1) << setw(30) << stddevMid << endl;
+    cout << "Final mean:   " << fixed << setprecision(1) << setw(30) << meanFin << endl;
+    cout << "Final std:    " << fixed << setprecision(1) << setw(30) << stddevFin << endl;
+
+    cout << endl;
+
+    cout << "Midterm Top 3 Scores:" << setw(16);
     top3(midterm);
+
+    cout << "Final Top 3 Scores:" << setw(18);
+    top3(final);
 }
