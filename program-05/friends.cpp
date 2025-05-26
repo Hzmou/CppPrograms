@@ -16,6 +16,81 @@ void display(string *friends, int size);
 int search(string *friends, int size, string target);
 string *resize(const string *smaller, int &cap);
 
+int main()
+{
+
+   int numFriends;
+   string bestFriend;
+   cout << "How Many friends: ";
+   cin >>  numFriends;
+    
+   int cap = numFriends;
+   int size = numFriends;
+   string *friends = new string[numFriends];
+   
+   cout << "enter the name of your Best Friend: ";
+   cin >> bestFriend;
+
+   friends[0] = bestFriend;
+
+   // prompt for the rest of the friends. 
+
+   for(int i=1; i< numFriends ;++i){
+       cout << "Enter friend name: ";
+       cin >> friends[i];
+   }
+   
+    display(friends,size);
+
+
+    string newBest;
+    cout << "\nEnter new best friend name (quit to end): ";
+    cin >> newBest;
+
+  
+    while(newBest != "quit"){
+     
+    cout << "\nEnter new best friend name (quit to end): ";
+    cin >> newBest;
+
+    //check if it already a best friend. 
+
+    if(friends[0] == newBest){
+      cout << newBest << " is already your best friend."<< endl;
+    }else{
+
+      int index = search(friends,size,newBest);
+
+      if(index != -1){
+        // move to  the best friend position, from of the array. 
+        for(int i=index; i>0; --i){
+            friends[i] = friends[i-1];
+        }
+         friends[0] = newBest;
+      } else{
+
+         if(size == cap){
+            friends = resize(friends,cap);
+
+         }
+
+         for (int i = size; i > 0; --i)
+         {
+                    friends[i] = friends[i - 1];
+                }
+                friends[0] = newBest;
+                ++size;
+
+         }
+      }
+       display(friends,size);
+    }
+   delete[] friends;
+   return 0;
+}
+
+
+
 string *resize(const string *smaller, int &cap)
 {
 
@@ -40,13 +115,31 @@ string *resize(const string *smaller, int &cap)
    return larger;
 }
 
-int main()
+int search(string *friends, int size, string target)
 {
 
-int numFriends;
+   // basic linear search to find a friend in the dynamic array.
 
+   for (int j = 0; j < size; ++j)
+   {
 
+      if (friends[j] == target)
+      {
+         return j;
+      }
+   }
 
+   return -1;
+}
 
-string *friends = new string[numFriends];
+void display(string *friends, int size)
+{
+   cout << friends[0] << "   "<<"** Best Friend **"<< endl;
+
+   for (int i = 1; i < size; ++i)
+   {
+
+      cout << friends[i] << " ";
+      cout << endl;
+   }
 }
