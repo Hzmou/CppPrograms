@@ -1,0 +1,15 @@
+Cybil Stevenson,(207)555-1234,Object Oriented Programming,250.00
+Samson Dorman,(207)0555-2345,C++ Currency Techniques,400.00
+Hilary St. John,(207)555-4567,Software Engineering Studies,285.00
+Jamal Germaine,(207)555-7801,Python for Data Analytics,350.00
+Linda Mardo,(207)555-3890,Machine Learning,525.00
+Keven Ricardo,(207555-9807,How Linux Works,325.00
+Lorraine Marto,[207]555-7890,Computer Architecture,290.00
+Kayleigh Bridge,(207)55-8901,Introduction to Computer Architecture,450.00
+Jayson Washington,(207)555-2340,Data Analytics with Excel,290.00
+Petra Francois,(207)555-6012,R Programming for Data Analysis,410.00
+Lloyd Kartov,(207)555-12o9,Objects in Python,325.00
+Yvette Demi,(207)555-2999,Software Development with Python,245.00
+Silva Beno,(207)555-1008,Software Security,525.00
+Iris Benning,(207)555-01565,Objects In Action,275.00
+Uvi Lenor,(207)555-9547,Linix Security,425.00
