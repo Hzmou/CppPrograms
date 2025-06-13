@@ -1,13 +1,12 @@
 
 /*
-  * this is an implementation of the Procedure.h header file. It models a procedure in a hospital. 
-  Private data stores the procedure name, doctor, and procedure cost. 
+  * this is an implementation of the Procedure.h header file. It models a procedure in a hospital.
+  Private data stores the procedure name, doctor, and procedure cost.
 */
 
 #include "Procedure.h"
 #include <iostream>
 using namespace std;
-
 
 // default constructor.
 Procedure::Procedure()
@@ -15,33 +14,46 @@ Procedure::Procedure()
 
 // Parameterized constructor.
 Procedure::Procedure(std::string name, std::string doctor, double cost)
-    : m_procedureName(name), m_doctor(doctor) {
+    : m_procedureName(name), m_doctor(doctor)
+{
     m_procedureCost = (cost < 0) ? 0.0 : cost;
 }
 
-
-// getters for the class. 
-string Procedure::getProcedureName() const{
+// getters for the class.
+string Procedure::getProcedureName() const
+{
     return m_procedureName;
 }
-string Procedure:: getDoctor() const{
+string Procedure::getDoctor() const
+{
     return m_doctor;
 }
-double Procedure::getProcedureCost() const{
+double Procedure::getProcedureCost() const
+{
     return m_procedureCost;
 }
 
 // setters for the class.
 
-void Procedure::setProcedureName(string name){
+void Procedure::setProcedureName(string name)
+{
     m_procedureName = name;
 }
 
-void Procedure::setDoctor(string doctor){
+void Procedure::setDoctor(string doctor)
+{
     m_doctor = doctor;
 }
-void Procedure::setProcedureCost(double cost){
+void Procedure::setProcedureCost(double cost)
+{
     m_procedureCost = (cost < 0) ? 0.0 : cost;
-
 }
+// calculates the patient cost based on insurance percent covered.
+// ex. insurance covers 80% so patient pays 20%
 
+double Procedure::patientCost(double insurancePercent) const
+{
+
+    double patientCoPay = 100.00 - insurancePercent;
+    return m_procedureCost * (patientCoPay / 100.00);
+}
