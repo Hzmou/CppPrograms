@@ -1,129 +1,90 @@
 
 
-#include "Order.h"
+/*
+    * This is main app.cpp file that uses truck and order classes to read data from a file and process it.
+    * It reads truck and order data from a file, processes it, and displays the results.
+
+*/
+
 #include "Truck.h"
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <stack>
+#include "Order.h"
+#include<stdio.h>
+#include<vector>
+#include<fstream>
+#include<string>
 #include<iomanip>
-#include <sstream>
+#include<sstream>
+#include<iostream>
+
+
 using namespace std;
 
-void display(const Truck &truck);
+void Display(Truck truck); // function prototype to dispplay order information in a truck. 
 
 
-int main()
-{
-
-    // declaring 3 trucks objects with different license cities. Portland, Lewiston, and Bangor.
-
-    Truck truck1("ABC123", "Portland");
-    Truck truck2("XYZ789", "Lewiston");
-    Truck truck3("LMN456", "Bangor");
-
-   ifstream input1;
-   input1.open("TodayOrders.txt")
-  
 
 
-    vector<Order> pendingOrders;
 
-    if (!input1 || !input2) {
-    std::cerr << "Could not open one or both files.\n";
+int main(){
+
+Truck truck1("XYTQ23", "Portland"); 
+Truck truck2("ABCD12", "Bangor");
+Truck truck3("EFGH34", "Lewiston");
+
+
+vector<Order> pendingOrder; // vector to hold pending orders that cannot be added to the truck.
+
+ifstream input("TodayOrders.txt"); // open the file for reading orders.
+
+if (!input) {
+    cerr << "Error opening file." << endl;
     return 1;
 }
-   
-   
-        string customer, address, city;
-        int numRefrigerators;
-        string numStr;
-        string line;
-        
 
-        while (getline(input1, customer) )
-        {
+string line;
 
-            getline(input1, address);
-            getline(input1, city);
-           
-            input1 >> numRefrigerators;
-            input1.ignore(); // Ignore the newline character after the integer
-            
-            
-            
-            Order order(customer, address, city, numRefrigerators);
 
-            if (city == "Portland")
-            {
-                if (!truck1.addOrder(order))
-                {
-                    pendingOrders.push_back(order);
-                }
-            }
-            else if (city == "Lewiston")
-            {
-                if (!truck2.addOrder(order))
-                {
-                    pendingOrders.push_back(order);
-                }
-            }
-            else if (city == "Bangor")
-            {
-                if (!truck3.addOrder(order))
-                {
-                    pendingOrders.push_back(order);
-                }
-            }
-            else
-            {
-                pendingOrders.push_back(order);
-            }
+
+// read each line from the file and parse the order information. 
+
+while (getline(input, line)) {
+    istringstream iss(line);
+    string customer, street, city;
+    int numRefrigerators;
+    iss >> customer >> street >> city >> numRefrigerators;
+    Order order(customer, street, city, numRefrigerators);
+    
+    if((order.getCity()) == "Portland")
+     {
+        truck1.addOrder(order);
+        if(truck1.isFull()){
+            pendingOrder.push_back(order);  
+            
         }
-
-       
-    
-
-    
-
-    input1.close();
-    input2.close();
-
-    display(truck1);
-    display(truck2);
-    display(truck3);
-    cout << "Pending Orders:\n";
-    if (pendingOrders.empty()) {
-        std::cout << "No pending orders.\n";
+     }else if((order.getCity()) == "Bangor"){
+        truck2.addOrder(order);
+        if(truck2.isFull()){
+            pendingOrder.push_back(order);  
+        }
+ 
+    } else if(order.getCity() == "Lewiston"){
+        truck3.addOrder(order);
+        if(truck3.isFull()){
+            pendingOrder.push_back(order);  
+        }
     } else {
-        for (const auto& order : pendingOrders) {
-            std::cout << std::left << std::setw(25) << order.getCustomer()
-                      << std::setw(20) << order.getStreet()
-                      << order.getNumRefrigerators() << '\n';
-        }
-        std::cout << "--------------------------\n";
+        cout << "Invalid city: " << order.getCity() << endl;
     }
+
+
+   // Display pending orders
+   if (!pendingOrder.empty()) {
+       cout << "Pending orders:" << endl;
+       for (const auto& ord : pendingOrder) {
+           cout << " - " << ord.getCustomer() << " (" << order.getCity() << ")" << endl;
+       }
+   }
+
 }
 
-
-void display(const Truck &truck)
-{
-    std::cout << "Truck License: " << truck.getLicense() << "\n";
-    std::cout << "Destination City: " << truck.getCity() << "\n";
-    std::cout << "Orders in Truck:\n";
-
-    if (truck.getOrders().empty()) {
-        std::cout << "No orders in this truck.\n";
-        return;
-    }
-
-    std::stack<Order> orders = truck.getOrders();
-    while (!orders.empty()) {
-        Order order = orders.top();
-        orders.pop();
-        std::cout << std::left << std::setw(25) << order.getCustomer()
-                  << std::setw(20) << order.getStreet()
-                  << order.getNumRefrigerators() << '\n';
-    }
-    std::cout << "--------------------------\n";
 }
