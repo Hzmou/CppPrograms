@@ -1,5 +1,5 @@
 Hanley Nursing Home
-125 Main St.
+125 Main St
 Portland
 1
 Billiards Grocery
@@ -7,11 +7,11 @@ Billiards Grocery
 Lewiston
 1
 Lakeside Dermatology
-46 Lakeview Dr.
+46 Lakeview Dr
 Bangor
 3
 Masters Meats
-39 Congress St.
+39 Congress St
 Portland
 3
 Jetson Livery

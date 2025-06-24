@@ -48,17 +48,11 @@ bool Truck::addOrder (Order order)
 	
 // checking if this order does not exceed the MAX capacity. 
 
-if(m_totalRefrigerators + order.getNumRefrigerators() > MAX){
-   
-	return false; // order exceeds capacity. 
-}
-
-// add the order to the truck 
-
-m_orders.push(order);
-//update total refrigerators.
-m_totalRefrigerators += order.getNumRefrigerators();
-return true;
-
+if (m_totalRefrigerators + order.getNumRefrigerators() <= MAX) {
+        m_orders.push(order);
+        m_totalRefrigerators += order.getNumRefrigerators();
+        return true;
+    }
+    return false;
 }
 
