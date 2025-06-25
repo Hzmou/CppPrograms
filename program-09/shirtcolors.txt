@@ -1,0 +1,11 @@
+Black
+Blue
+Green
+Light Blue
+Orange
+Navy
+Pink
+Purple
+Red
+Tan
+White
