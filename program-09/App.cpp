@@ -29,43 +29,41 @@ int main()
 
         cout << "Enter shirt type (P for Polo, S for Standard, Q to quit): ";
         cin >> shirtType;
-        
+
         string size, color, monogram;
         int qty = 0;
 
-        // get the size. 
+        // get the size.
 
         cout << "Enter shirt size (S, M, L, XL): ";
         cin >> size;
-    
-        //convert size to uppercase:
+
+        // convert size to uppercase:
 
         transform(size.begin(), size.end(), size.begin(), ::toupper);
 
-       // get the color. 
+        // get the color.
 
-      
- cout << "Enter color ( Black, Blue, Green, Light Blue, Orange, Navy, Pink, Purple, Red, Tan, White ): ";
+        cout << "Enter color ( Black, Blue, Green, Light Blue, Orange, Navy, Pink, Purple, Red, Tan, White ): ";
 
- getline(cin,color);
- 
+        getline(cin, color);
 
- if(shirtType = 'P'){
+        if (shirtType = 'P')
+        {
 
-    cout << "Enter text for monogram (1 to 10 characters): ";
-    getline(cin,monogram);
+            cout << "Enter text for monogram (1 to 10 characters): ";
+            getline(cin, monogram);
+        }
 
- }
-
-
-
-
-
-
+        
 
     } while (shirtType != 'Q' && shirtType != 'q');
 }
 
+
+/*
+  *
+*/
 vector<string> readShirtColors(const string &filename)
 {
 

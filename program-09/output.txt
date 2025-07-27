@@ -1,0 +1,28 @@
+
+Sample Output 1:
+
+Enter S for plain shirt, P for polo shirt, Q to quit: S
+Enter size ( S M L XL ): L
+Enter color ( Black, Blue, Green, Light Blue, Orange, Navy, Pink, Purple, Red, Tan, White ): Tan
+Enter quantity (1..10): 5
+Size   Color   Retail Price   Quantity   Cost
+L      Tan     16.99          5          84.95
+
+Enter S for plain shirt, P for polo shirt, Q to quit: P
+Enter text for monogram (1 to 10 characters): ACME CO
+Enter size ( S M L XL ): M
+Enter color ( Black, Blue, Green, Light Blue, Orange, Navy, Pink, Purple, Red, Tan, White ): Red
+Enter quantity (1..10): 10
+Size   Color   Monogram   Retail Price   Quantity   Cost
+M      Red     ACME CO    23.99          10         239.90
+
+Enter S for plain shirt, P for polo shirt, Q to quit: S
+Enter size ( S M L XL ): S
+Enter color ( Black, Blue, Green, Light Blue, Orange, Navy, Pink, Purple, Red, Tan, White ): Green
+Enter quantity (1..10): 1
+Size   Color   Retail Price   Quantity   Cost
+S      Green   15.99          1          15.99
+
+Enter S for plain shirt, P for polo shirt, Q to quit: Q
+
+Total Cost: 340.84
