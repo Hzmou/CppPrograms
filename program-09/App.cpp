@@ -1,5 +1,9 @@
 
-
+/* Basic program to practice classes and subclasses. This program claculates the price for a quantity of shirt or Polo shirts.
+ * Author: Hamza Zm.
+ * Date: 2023-10-01
+ * Version: 1.0,    c++14.
+ */
 #include "Shirt.h"
 #include "Poloshirt.h"
 #include <iostream>
@@ -19,11 +23,12 @@ vector<string> readShirtColors(const string &filename);
 int main()
 {
 
-    vector<string> colors = readShirtColors("shirt_colors.txt");
+    vector<string> colors = readShirtColors("shirt_colors.txt"); // vector to hold shirt colors.
 
-    double totalCost = 0.0;
-    char shirtType;
-   
+    double totalCost = 0.0; // variable to hold the total cost of all shirts.
+    char shirtType;         // variable to hold the type of shirt (P for Polo, S for Standard, Q to quit).
+
+    /* do,while loop to implement the program logic.*/
 
     do
     {
@@ -32,9 +37,9 @@ int main()
         cin >> shirtType;
         shirtType = toupper(shirtType);
 
-        if(shirtType == 'Q'){
+        if (shirtType == 'Q')
+        {
             break; // exit the loop if user enters 'Q'.
-
         }
 
         string size, color, monogram;
@@ -82,9 +87,11 @@ int main()
         if (shirtType == 'P')
         {
 
-            PoloShirt polo(size, color, monogram);
+            PoloShirt polo(size, color, monogram); // create a PoloShirt object with the given size, color, and monogram.
             price = polo.retailPrice();
             cost = price * qty;
+
+            /* output all the information about the shirt. */
 
             cout << left << setw(8) << "Size"
                  << setw(12) << "Color"
@@ -102,9 +109,12 @@ int main()
         }
         else
         {
-            Shirt shirt(size, color);
+
+            /* this means our shirt is a standard shirt, we output all the info about our shirt.*/
+
+            Shirt shirt(size, color); // create a Shirt object with the given size and color.
             price = shirt.retailPrice();
-            cost = price * qty;
+            cost = price * qty; // calculate the cost for the quantity of shirts.
 
             cout << left << setw(8) << "Size"
                  << setw(12) << "Color"
@@ -119,7 +129,8 @@ int main()
                  << fixed << setprecision(2) << cost << endl;
         }
 
-        totalCost += cost;
+        totalCost += cost; // add the cost of the current shirt to the total cost.
+
         cout << endl;
 
     } while (shirtType != 'Q' && shirtType != 'q');
