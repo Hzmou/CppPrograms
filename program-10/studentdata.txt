@@ -1,0 +1,12 @@
+Undergraduate,111222,Mike Allegar,MET,100
+Undergraduate,111222,Raphael Connor,COS,55
+Graduate,222444,Chris Davett,COS,21,Dr. Killjoy
+Graduate,222333,Latoya Everett,MET,9,Dr. Roaria
+Undergraduate,111111,Sadie Juno,MET,34
+Graduate,222222,Salimeh Khalid,COS,23,Dr. Jackson
+Undergraduate,111444,Igor Koloski,MET,45
+Graduate,222111,Chen Li,COS,12,Dr. Beno
+Undergraduate,111444,Marco Paella,COS,111
+Undergraduate,111111,Kim Peterson,COS,24
+Undergraduate,111333,Henri Tego,MET,118
+Undergraduate,111333,Camelia Thomas,COS,99
