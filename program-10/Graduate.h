@@ -19,7 +19,8 @@ public:
 
 	// return credits needed to graduate with 40 credits
 	int creditsNeeded() const;
-
+	
+// attributed of the class. 
 private:
 	std::string m_thesisAdvisor;			// name of thesis advisor
 };
