@@ -21,7 +21,7 @@ int main()
     // we prompt the user to enter the number of rooms.
 
     int numRooms;
-    cout << "Enter number of rooms";
+    cout << "Enter number of rooms: ";
     cin >> numRooms;
     cin.ignore();
 
@@ -59,8 +59,9 @@ int main()
         cout << "Square Footage: " << sqaureFootage << endl;
         cout << "Actual Paint Cans Needed: " << cansNeeded << endl;
         cout << "Whole Cans to Purchase: " << wholeCans << endl;
+
         cout << setprecision(2);
-        cout << "Room Cost: $" << totalCost << endl;
+        cout << "Paint Cost:    $" << totalCost << endl;
     }
 
     return 0;
