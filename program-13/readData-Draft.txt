@@ -1,0 +1,26 @@
+   string line;
+    string currentState;
+    vector<string> stateData;
+    
+    while(getline(inputFile, line)) {
+        // If we have collected 3 data items for the previous state, store it
+        if(stateData.size() == 3) {
+            dataMap[currentState] = stateData;
+            stateData.clear();
+        }
+        
+        // If stateData is empty, this line is a state name
+        if(stateData.empty()) {
+            currentState = line;
+        } else {
+            // This is data for the current state (flower, tree, or bird)
+            stateData.push_back(line);
+        }
+    }
+    
+    // Don't forget to add the last state's data
+    if(stateData.size() == 3) {
+        dataMap[currentState] = stateData;
+    }
+    
+    inputFile.close();
