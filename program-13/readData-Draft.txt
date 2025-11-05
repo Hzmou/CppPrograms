@@ -1,26 +1,46 @@
-   string line;
+void readData(string filename , map<string, vector<string>> &dataMap){
+
+    ifstream inputFile(filename);
+
+    if(!(inputFile.is_open())){ 
+        cerr << "Error opening file: " << filename << endl;
+        return;
+    }
+
+    cout << "File opened successfully!" << endl; // Debug line
+
+    string line;
     string currentState;
     vector<string> stateData;
-    
-    while(getline(inputFile, line)) {
-        // If we have collected 3 data items for the previous state, store it
-        if(stateData.size() == 3) {
-            dataMap[currentState] = stateData;
-            stateData.clear();
-        }
+    int lineCount = 0;
+    int lineInGroup = 0; // Track position within each 4-line group
+
+    while(getline(inputFile,line)){
+        lineCount++;
+        lineInGroup = (lineCount - 1) % 4; // 0, 1, 2, 3, 0, 1, 2, 3...
         
-        // If stateData is empty, this line is a state name
-        if(stateData.empty()) {
+        cout << "Line " << lineCount << " (group pos " << lineInGroup << "): '" << line << "'" << endl;
+        
+        if(lineInGroup == 0){
+            // This is a state name
             currentState = line;
+            cout << "Set state: " << currentState << endl;
+            stateData.clear(); // Make sure vector is empty for new state
         } else {
-            // This is data for the current state (flower, tree, or bird)
+            // This is data (flower, tree, or bird)
             stateData.push_back(line);
-        }
+            cout << "Added data: " << line << " (size now: " << stateData.size() << ")" << endl;
+            
+            // When we have all 3 pieces of data, add to map
+            if(stateData.size() == 3){
+                dataMap[currentState] = stateData;
+                cout << "Added " << currentState << " to map with " << stateData.size() << " items" << endl;
+            }   
+        } 
     }
-    
-    // Don't forget to add the last state's data
-    if(stateData.size() == 3) {
-        dataMap[currentState] = stateData;
-    }
-    
+
+    cout << "Total lines read: " << lineCount << endl;
+    cout << "Map size after reading: " << dataMap.size() << endl;
+
     inputFile.close();
+}
