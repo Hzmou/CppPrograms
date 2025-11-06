@@ -44,3 +44,28 @@ void readData(string filename , map<string, vector<string>> &dataMap){
 
     inputFile.close();
 }
+
+
+void displayData(map<string , vector<string>> &dataMap){
+
+      // Set column widths
+    const int stateWidth = 25;
+    const int flowerWidth = 25;
+    const int treeWidth = 25;
+    const int birdWidth = 20;
+
+    // Display all states in formatted columns
+    for (const auto &pair : dataMap)
+    {
+        cout << left 
+             << setw(stateWidth) << pair.first           // State name
+             << setw(flowerWidth) << pair.second[0]      // Flower
+             << setw(treeWidth) << pair.second[1]        // Tree
+             << setw(birdWidth) << pair.second[2]        // Bird
+             << endl;
+      
+        
+
+    }
+
+}
