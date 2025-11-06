@@ -42,10 +42,45 @@ int main()
 
 void readData(string filename, map<string, vector<string>> &dataMap){
 
+    
+
 string line;   /* string that represents the current line that is being read. */
 string currentState;  /* String of the current state we are reading its data. */
 vector<string> stateData; /* vector that hold the */
-int lineCount = 0;
+int lineCount = 0;  //this keep track of how many lines on the file, 
+                    // it helps us identify the line that has a state name from the state data. 
+
+int lineInGroup = 0; // Track position within each 4-line group
+
+
+
+ifstream inputFile(filename);
+
+    // detect errors if the file is not opened correctly. 
+
+
+    if(!inputFile.is_open()){
+
+        cerr << "Error opening file: " << filename << endl;
+        return;
+    }
+
+
+
+    while(getline(inputFile, line)){
+
+     // increase the line count now:
+
+     lineCount++;
+     lineInGroup = (lineCount-1) % 4; 
+
+
+
+         
+
+
+
+    }
 
 
 
