@@ -4,6 +4,8 @@
 class EmptyCollectionException : public std::runtime_error
 {
 public:
-	EmptyCollectionException();
+	// Constructor that accepts a string message
+    EmptyCollectionException(const std::string& message) 
+        : std::runtime_error(message) {}
 };
 
