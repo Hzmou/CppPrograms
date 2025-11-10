@@ -2,6 +2,8 @@
 #include "TreeNode.h"
 #include <vector>
 
+using namespace std;
+
 template <typename T>
 class BinSTree // ==, <, > are defined on T
 {
@@ -32,27 +34,25 @@ std::vector<T> BinSTree<T>::path(T target) const
 	while (current != nullptr)
 	{
 
-		result.push_back(current->getItem())
+		result.push_back(current->getItem());
+
+		// found target, return the path.
+		if (target == current->getItem())
+		{
+			return result;
+		}
+		else if (target < current->getItem())
 		{
 
-			// found target, return the path.
-			if (target == current->getItem())
-			{
-				return result;
-			}
-			else if (target < current->getItem())
-			{
+			// search left:
 
-				// search left:
+			current = current->getLeft();
+		}
+		else
+		{
 
-				current = current->getLeft();
-			}
-			else
-			{
-
-				// search right:
-				current = current->getRight();
-			}
+			// search right:
+			current = current->getRight();
 		}
 	}
 
@@ -67,47 +67,40 @@ std::vector<T> BinSTree<T>::path(T target) const
 template <typename T>
 std::vector<T> BinSTree<T>::children(T target) const
 {
-	vector<T> thechildren{}; // vector of child data of target
-							 // add code
+    vector<T> thechildren{}; // vector of child data of target
 
-	TreeNode<T> *current = root;
+    TreeNode<T> *current = root;
 
-	while (current != nullptr)
-	{
+    while (current != nullptr)
+    {
+        if (target == current->getItem())
+        {
+            // found target, collect children beneath that target.
 
-		if (target == current->getItem())
-		{
+            if (current->getLeft() != nullptr)
+            {
+                thechildren.push_back(current->getLeft()->getItem());
+            }
 
-			// found targe, collect children beneath that target.
+            if (current->getRight() != nullptr)
+            {
+                thechildren.push_back(current->getRight()->getItem());
+            }
 
-			if (current->getLeft() != nullptr)
-			{
-
-				thechildren.push_back(current->getLeft->getItem());
-			}
-
-			if (current->getRight() != nullptr)
-			{
-
-				thechildren.push_back(current->getLeft->getItem());
-			}
-
-			return thechildren;
-
-			else if (target < current->getItem())
-			{
-				current = current->getLeft();
-			}
-
-			else
-			{
-
-				current = current->getRight();
-			}
-		}
-	}
+            return thechildren;
+        }
+        else if (target < current->getItem())
+        {
+            current = current->getLeft();
+        }
+        else
+        {
+            current = current->getRight();
+        }
+    }
+    
+    return thechildren; // return empty vector if target not found
 }
-
 // empty tree is created
 template <typename T>
 BinSTree<T>::BinSTree()
