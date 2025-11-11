@@ -12,41 +12,47 @@ using namespace std;
 int main()
 {
 
-	BinSTree<string> b{}; // binary search tree of animals
-	string animalName;
+    BinSTree<string> bst1{}; // creating our own BST
 
-	b.insert("kangaroo"); // insert animals in this order
-	b.insert("mouse");
-	b.insert("tick");
-	b.insert("raccoon");
-	b.insert("walrus");
-	b.insert("crocodile");
-	b.insert("emu");
+    string input;
 
-	cout << "Enter the name of the Animal (quit to End): ";
+    bst1.insert("Integrals");
+    bst1.insert("Derivatives");
+    bst1.insert("Partial derivatives");
+    bst1.insert("Tensors");
+    bst1.insert("Transformers");
+    bst1.insert("Manifolds");
+    bst1.insert("Laplace Transform");
 
-	getline(cin, animalName);
+    cout << "Enter a Calculus tool (q to quit): " << endl;
+    getline(cin, input);
 
-	 while (animalName != "quit")
+    vector<string> path;
+    vector<string> children;
+
+    while (input != "q")
     {
 
-        cout << "Path:" << endl;
-        vector<string> pathResult = b.path(animalName);
-        for (const string& animal : pathResult)
+        cout << "Path: " << endl;
+
+        path = bst1.path(input);
+
+        for (int i = 0; i < path.size(); ++i)
         {
-            cout << animal << endl;
+            cout << path[i] << endl;
         }
 
-        cout << endl << "Children:" << endl;
-        vector<string> childrenResult = b.children(animalName);
-        for (const string& animal : childrenResult)
+        children = bst1.children(input);
+
+        cout << "Children: " << endl;
+
+        for (int i = 0; i < children.size(); ++i)
         {
-            cout << animal << endl;
+
+            cout << children[i] << endl;
         }
 
-        cout << endl << "Enter the name of the Animal (quit to End): ";
-        getline(cin, animalName);
+        cout << "Enter a Calculus tool (q to quit): " << endl;
+        getline(cin, input);
     }
-
-    return 0;
 }
