@@ -16,7 +16,10 @@ public:
     // Setters / Mutators
     void setDescription(const std::string& desc);
     void markComplete();
-    void markIncomplete();
+    void markPending();
+    void setDueDate();
+    void getPriority();
+
 
     // (Optional: Add methods for due date, priority, etc.)
 
@@ -25,6 +28,8 @@ private:
     std::string description;
     bool completed;
     // (Optional: std::string dueDate; int priority;)
+    std::string dueDate;
+    int priority;
 };
 
 #endif // TASK_H
