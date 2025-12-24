@@ -1,0 +1,3 @@
+1,0,"Edit the mfile.txt and close it . "
+2,0,"set the clock to return function m()"
+3,0,"set timer to 2:34"

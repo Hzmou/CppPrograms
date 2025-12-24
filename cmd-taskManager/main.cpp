@@ -96,19 +96,16 @@ void addTask(vector<Task> &tasks, int &nextId)
 
     if (taskDesc.empty())
     {
-
-        cout << "No task Added. could not add Task.  ";
+        cout << "No task added. Could not add task.\n";
         return;
-
-        Task newT(nextId, taskDesc);
-
-        // add the new task to the vector of tasks that already exists.
-
-        tasks.push_back(newT);
-        cout << "New task added , ID: # " << nextId << ".\n";
-        ++nextId;
     }
+
+    Task newT(nextId, taskDesc);
+    tasks.push_back(newT);
+    cout << "New task added, ID: #" << nextId << ".\n";
+    ++nextId;
 }
+
 
 /*
  * list all tasks that are current in the terminal.
@@ -126,9 +123,8 @@ void listTasks(const std::vector<Task> &tasks)
 
     cout << "\n -----  Current Tasks: ------- \n";
 
-    for (auto &t : tasks)
+    for (const auto &t : tasks)
     {
-
         cout << "ID #" << t.getId()
              << " [" << (t.isCompleted() ? "X" : " ") << "] "
              << t.getDescription() << '\n';
@@ -163,22 +159,19 @@ void markTaskComplete(std::vector<Task> &tasks)
 
     for (auto &t : tasks)
     {
-
         if (t.getId() == id)
         {
-
             if (t.isCompleted())
             {
-                cout << "Task with ID: #" << id << "is already compelete!";
+                cout << "Task with ID: #" << id << " is already complete!\n";
             }
             else
             {
                 t.markComplete();
-                cout << "Task #" << id << "marked as compelete.\n";
+                cout << "Task #" << id << " marked as complete.\n";
             }
+            return;
         }
-
-        return;
     }
 
     cout << "Task with ID #" << id << " not found.\n";
@@ -214,8 +207,7 @@ void deleteTask(std::vector<Task> &tasks)
 
         if (tasks[i].getId() == id)
         {
-
-            tasks.erase(tasks.begin() + 1);
+            tasks.erase(tasks.begin() + i);
             cout << "Task #" << id << " deleted.\n";
             return;
         }
@@ -288,3 +280,140 @@ void saveTasks(const std::vector<Task> &tasks, const std::string &filename)
     }
 }
 
+/*
+
+*
+
+
+*/
+
+void loadTasks(vector<Task> &tasks, int &nextId, const string &filename)
+{
+
+    ifstream ifs(filename);
+
+    if (!ifs)
+    {
+
+        cout << "Failed to open file: " << filename << " for reading." << endl;
+        return;
+    }
+
+    // clear the vector of tasks.
+
+    tasks.clear();
+    nextId = 1;
+    int maxId = 0;
+
+    string line;
+
+    // reading from the file.
+
+    while (getline(ifs, line))
+    {
+
+        if (line.empty())
+        {
+            // skip empty lines
+            continue;
+        }
+
+        size_t pos = 0;
+        size_t comma = line.find(',', pos);
+
+        if (comma == string::npos)
+        {
+            std::cout << "Skipping malformed line: " << line << '\n';
+        }
+
+        string idStr = line.substr(pos, comma - pos);
+        pos = comma + 1;
+
+        // parse completed.
+
+        comma = line.find(',', pos);
+
+        if (comma == string::npos)
+        {
+            cout << "Skipping malformed line: " << line << '\n';
+            continue;
+        }
+
+        string compStr = line.substr(pos, comma - pos);
+        pos = comma + 1;
+
+        // parse quoted description (CSV-like),
+        // handle doubled quotes and \n sequences.
+
+        string desc;
+
+        if (pos < line.size() && line[pos] == '"')
+        {
+
+            size_t i = pos + 1;
+
+            while (i < line.size())
+            {
+                char c = line[i];
+                if (c == '"')
+                {
+                    // doubled quote -> literal quote
+                    if (i + 1 < line.size() && line[i + 1] == '"')
+                    {
+                        desc.push_back('"');
+                        i += 2;
+                        continue;
+                    }
+                    else
+                    {
+                        // closing quote
+                        ++i;
+                        break;
+                    }
+                }
+                if (c == '\\' && i + 1 < line.size() && line[i + 1] == 'n')
+                {
+                    desc.push_back('\n');
+                    i += 2;
+                    continue;
+                }
+                desc.push_back(c);
+                ++i;
+            }
+        }
+        else
+        {
+
+            // no quotes -- take rest
+
+            desc = line.substr(pos);
+        }
+
+        try
+        {
+            int id = stoi(idStr);
+            int completed = stoi(compStr);
+
+            // create task and set completed flag
+            Task t(id, desc);
+            if (completed != 0)
+                t.markComplete();
+            tasks.push_back(t);
+            if (id > maxId)
+                maxId = id;
+        }
+        catch (const exception &)
+        {
+            cout << "Skipping line with bad numeric fields:" << line << '\n';
+            continue;
+        }
+    }
+
+    if (maxId >= nextId)
+    {
+
+        nextId = maxId + 1;
+    }
+
+    cout << "Loaded " << tasks.size() << " tasks from " << filename << "." << endl;
+}
