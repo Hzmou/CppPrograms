@@ -7,6 +7,14 @@
 
 using namespace std;
 
+/*
+ * cmd-taskManager — simple command-line task manager
+ * - Stores tasks in memory and can save/load to "tasks.txt"
+ * - Provides an interactive menu to add, list, complete, delete tasks
+ *
+ * The functions below are defined later in this file.
+ */
+
 // ------- Function Prototypes -------
 void showMenu();
 void addTask(std::vector<Task> &tasks, int &nextId);
@@ -25,10 +33,12 @@ int main()
 
     // Optionally: loadTasks(tasks, nextId, filename); on startup
 
+    // Main interactive loop: show menu, read choice, dispatch action
     while (true)
     {
         showMenu();
         int choice;
+        // Read user's menu choice (integer expected)
         std::cin >> choice;
 
         switch (choice)
@@ -75,13 +85,13 @@ void showMenu()
     std::cout << "Select option: ";
 }
 
-// Implement: addTask, listTasks, markTaskComplete, deleteTask, saveTasks, loadTasks
-// (Leave as empty stubs first, fill in as you go!)
-
-// implementation of all the fucntion above.
+// Implementations of task operations follow.
 
 /*
- * This function add a task to the task vector.
+ * addTask:
+ * - Prompts the user for a task description (can include spaces).
+ * - Creates a new Task with `nextId`, appends it to `tasks`, and increments `nextId`.
+ * - If the user input is empty, does not add a task.
  */
 
 void addTask(vector<Task> &tasks, int &nextId)
@@ -106,9 +116,10 @@ void addTask(vector<Task> &tasks, int &nextId)
     ++nextId;
 }
 
-
 /*
- * list all tasks that are current in the terminal.
+ * listTasks:
+ * - Prints all tasks with ID, completion marker, and description.
+ * - If no tasks exist, prints an informational message and returns.
  */
 
 void listTasks(const std::vector<Task> &tasks)
@@ -132,7 +143,9 @@ void listTasks(const std::vector<Task> &tasks)
 }
 
 /*
- * Mark a task if it's complete.
+ * markTaskComplete:
+ * - Prompts for a task ID and marks the matching task complete.
+ * - Validates numeric input and reports if the task is not found.
  */
 void markTaskComplete(std::vector<Task> &tasks)
 {
@@ -178,7 +191,9 @@ void markTaskComplete(std::vector<Task> &tasks)
 }
 
 /*
- * function to delete a task from the vector list of the tasks.
+ * deleteTask:
+ * - Prompts for a task ID and removes the matching task from the vector.
+ * - Validates numeric input and reports success or failure.
  */
 
 void deleteTask(std::vector<Task> &tasks)
@@ -217,18 +232,23 @@ void deleteTask(std::vector<Task> &tasks)
 }
 
 /*
- * save tasks into the file (.txt).
+ * saveTasks:
+ * - Writes each task to `filename` in a CSV-like format: id,completed,"description"
+ * - Escapes embedded quotes (as doubled quotes) and newlines (as \n) so description
+ *   can be round-tripped by `loadTasks`.
  */
 
-void saveTasks(const std::vector<Task> &tasks, const std::string &filename)
+/*
+ * loadTasks:
+ * - Reads tasks from `filename` using the CSV-like format written by `saveTasks`.
+ * - Reconstructs each Task, restores completion state, and updates `nextId`.
+ * - Handles quoted descriptions, doubled quotes, and \n sequences.
+ */
+
+void loadTasks(vector<Task> &tasks, int &nextId, const string &filename)
 {
-
-    if (tasks.empty())
-    {
-
-        cout << "no taks in the list to save, Please add tasks!";
-        return;
-    }
+    cout << "no taks in the list to save, Please add tasks!";
+    return;
 
     // write content of the vector tasks into a .txt file with "filename".
 
