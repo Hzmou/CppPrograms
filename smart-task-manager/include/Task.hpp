@@ -47,10 +47,10 @@ public:
     const std::set<std::string>& tags() const noexcept;
 
 private:
-    int m_id = -1;
-    std::string m_title;
-    std::string m_description;
-    std::optional<Date> m_due;
+    int m_id = -1;  // unique identifier for a task.
+    std::string m_title;  // brief title of the task. 
+    std::string m_description;  // detailed description of the task.
+    std::optional<Date> m_due;  // optional due date.
     std::optional<Estimate> m_estimate;
     TaskStatus m_status = TaskStatus::Todo;
     std::string m_project; // project name
