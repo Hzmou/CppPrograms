@@ -7,6 +7,7 @@
  */
 
 #include "Task.hpp"
+#include <algorithm>
 #include <utility>
 
 namespace stm
@@ -66,6 +67,64 @@ namespace stm
 
     }
 
+    void Task::assign_user(std::string username{
+        if(username.empty()) m_assignee.reset();
+        else m_assignee = std::move(username);
+    }
+
+    // getter for description. 
+
+    const std::string& Task::description() const noexcept{
+        return m_description;
+    }
+    
+
+    // getter for due date. 
+
+    std::optional<Date> Task::due() const noexcept{
+        return m_due;
+    }
+
+    // estimate function. 
+
+    std::optional<Estimate> Task::estimate() const noexcept{
+
+        return m_estimate;
+    }
 
 
-}
+    Tasksatus Task::status() const noexcept{
+
+        return m_status;
+    }
+
+    const std::string& Task::project() const noexcept{
+        return m_project;
+    }
+    
+    const std::optional<std::string>& Task::assignee() const noexcept{
+        return m_assignee;
+    }
+
+    // tag operations. 
+
+    bool Task::add_tag(const std::string& tag){
+        retrun m_tag.insert(tag).second;
+
+    }
+
+    bool Task::remove_tag(const std::string& tag){
+
+        return m_tags.erase(tag)>0;
+
+    }
+
+    const std::set<std::string& Task::tags() const noexcept{
+        return m_tags;
+    }
+    
+    
+
+
+
+}  // namespace stm. 
