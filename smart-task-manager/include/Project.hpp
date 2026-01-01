@@ -20,9 +20,10 @@ public:
     const std::string& color() const noexcept;
 
 private:
-    std::string m_name;
-    std::string m_description;
-    std::string m_color; // #RRGGBB
+    std::string m_name; //name of the project.
+    std::string m_description; // description of the project.
+    std::string m_color; // #RRGGBB // color of the project label. 
+
 };
 
 } // namespace stm
