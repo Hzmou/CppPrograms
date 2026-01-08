@@ -42,7 +42,7 @@ namespace stm
         m_color = std::move(hex);
     }
 
-    // return sthe color of the project.
+    // returns the color of the project.
 
     const std::string &Project::color() const noexcept
     {

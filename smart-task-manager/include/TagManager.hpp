@@ -20,7 +20,9 @@ public:
     void decrement(const std::string& tag);
 
 private:
-    std::unordered_map<std::string, size_t> m_counts;
+
+// map that holds the count of tags. 
+    std::unordered_map<std::string, size_t> m_counts; 
 };
 
 } // namespace stm
