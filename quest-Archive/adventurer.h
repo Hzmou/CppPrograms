@@ -3,36 +3,41 @@
 #ifndef ADVENTURER_H
 #define ADVENTURER_H
 
-
 #include <string>
 
 class Adventurer
 {
 
-    private:
-
+private:
     std::string name;
     int level;
     int questsCompleted;
     double goldEarned;
-    std:: string rank;
+    std::string rank;
 
     void updateRank();
 
-    public: 
-
-    // constructor functions. 
+public:
+    // constructor functions.
 
     Adventurer();
     Adventurer(std::string name, int level);
-    
+    // cosntructor that makes it easier to load data into out.txt file.
 
-    // core functions. 
+    // For loading from quests.txt
+    Adventurer(
+        std::string name,
+        int level,
+        int questsCompleted,
+        double goldEarned,
+        std::string rank);
 
-    void recordQuest();
+    // core functions.
+
+    void recordQuest(double goldEarned);
     void display() const;
 
-    //getters and setters. 
+    // getters and setters.
 
     std::string getName() const;
     int getLevel() const;
@@ -40,17 +45,11 @@ class Adventurer
     double getGoldEarned() const;
     std::string getRank() const;
 
-     void setName(std::string name);
-     void setLevel(int level);
-     void setQuestsCompleted(int questsCompleted);
-     void setGoldEarned(double goldEarned);
-     void setRank(std::string rank);
-
-     
-
-   
-
-
+    void setName(std::string name);
+    void setLevel(int level);
+    void setQuestsCompleted(int questsCompleted);
+    void setGoldEarned(double goldEarned);
+    void setRank(std::string rank);
 };
 
 #endif
