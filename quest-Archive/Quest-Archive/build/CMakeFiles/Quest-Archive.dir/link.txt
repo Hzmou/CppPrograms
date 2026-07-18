@@ -1,0 +1,3 @@
+C:\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f CMakeFiles\Quest-Archive.dir/objects.a
+C:\Qt\Tools\mingw1310_64\bin\ar.exe qc CMakeFiles\Quest-Archive.dir/objects.a @CMakeFiles\Quest-Archive.dir\objects1.rsp
+C:\Qt\Tools\mingw1310_64\bin\g++.exe -g -mwindows -Wl,--whole-archive CMakeFiles\Quest-Archive.dir/objects.a -Wl,--no-whole-archive -o Quest-Archive.exe -Wl,--out-implib,libQuest-Archive.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Quest-Archive.dir\linkLibs.rsp

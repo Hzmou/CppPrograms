@@ -1,0 +1,9 @@
+C:/Users/zmouh/Documents/GithubRepos/CppPrograms/quest-Archive/Quest-Archive/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/Quest-Archive.dir
+C:/Users/zmouh/Documents/GithubRepos/CppPrograms/quest-Archive/Quest-Archive/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/edit_cache.dir
+C:/Users/zmouh/Documents/GithubRepos/CppPrograms/quest-Archive/Quest-Archive/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/zmouh/Documents/GithubRepos/CppPrograms/quest-Archive/Quest-Archive/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/list_install_components.dir
+C:/Users/zmouh/Documents/GithubRepos/CppPrograms/quest-Archive/Quest-Archive/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/install.dir
+C:/Users/zmouh/Documents/GithubRepos/CppPrograms/quest-Archive/Quest-Archive/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/install/local.dir
+C:/Users/zmouh/Documents/GithubRepos/CppPrograms/quest-Archive/Quest-Archive/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/install/strip.dir
+C:/Users/zmouh/Documents/GithubRepos/CppPrograms/quest-Archive/Quest-Archive/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/Quest-Archive_autogen_timestamp_deps.dir
+C:/Users/zmouh/Documents/GithubRepos/CppPrograms/quest-Archive/Quest-Archive/build/Desktop_Qt_6_11_1_MinGW_64_bit_Debug/CMakeFiles/Quest-Archive_autogen.dir
